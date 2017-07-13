@@ -11,6 +11,8 @@ and [android-retrostreams](https://github.com/retrostreams/android-retrostreams)
 
 Other than having a different package name this code has no further changes compared with [streamsupport-cfuture](https://sourceforge.net/p/streamsupport/code/ci/default/tree/src/cfuture/)
 
+Online Javadoc is available at [docs](https://retrostreams.github.io/android-retrofuture/apidocs/index.html)
+
 Please give feedback [here](https://github.com/retrostreams/android-retrofuture/issues) if you experience any problems.
 
 
