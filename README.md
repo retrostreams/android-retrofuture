@@ -8,6 +8,10 @@ There is nothing specific to Android or the desugar toolchain in this code (it c
 it has a dependency on [android-retrostreams](https://github.com/retrostreams/android-retrostreams) which is why this exists as a separate component (the corresponding
 [streamsupport-cfuture](https://sourceforge.net/p/streamsupport/code/ci/default/tree/src/cfuture/) component can't be used with android-retrostreams).
 
+Other than having a different package name this code has no changes compared with [streamsupport-cfuture](https://sourceforge.net/p/streamsupport/code/ci/default/tree/src/cfuture/)
+
+Please give feedback [here](https://github.com/retrostreams/android-retrofuture/issues) if you experience any problems.
+
 
 ## LICENSE
 
