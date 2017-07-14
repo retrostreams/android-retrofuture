@@ -1,8 +1,32 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.sourceforge.streamsupport</groupId>
 	<artifactId>android-retrofuture</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
+	<name>net.sourceforge.streamsupport:android-retrofuture</name>
+	<description>Backport of Java 9 (JEP 266) CompletableFuture API for Android Studio 3.0
+ desugar toolchain, forked from https://sourceforge.net/projects/streamsupport</description>
+	<url>http://github.com/retrostreams/android-retrofuture/</url>
+	<licenses>
+		<license>
+			<name>GNU General Public License, version 2, with the Classpath Exception</name>
+			<url>http://openjdk.java.net/legal/gplv2+ce.html</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Stefan Zobel</name>
+			<email>Spliterator@gmail.com</email>
+			<organization>net.sourceforge.streamsupport</organization>
+			<organizationUrl>http://github.com/retrostreams/</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<url>https://github.com/retrostreams/android-retrofuture</url>
+		<connection>scm:git:git@github.com:retrostreams/android-retrofuture.git</connection>
+		<developerConnection>scm:git:git@github.com:retrostreams/android-retrofuture.git</developerConnection>
+	</scm>
 
 	<dependencies>
 		<dependency>
