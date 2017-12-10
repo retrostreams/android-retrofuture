@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.sourceforge.streamsupport</groupId>
 	<artifactId>android-retrofuture</artifactId>
-	<version>1.6.0</version>
+	<version>1.6.1-SNAPSHOT</version>
 	<name>net.sourceforge.streamsupport:android-retrofuture</name>
 	<description>Backport of Java 9 (JEP 266) CompletableFuture API for Android Studio 3.0
  desugar toolchain, forked from https://sourceforge.net/projects/streamsupport</description>
@@ -32,7 +32,7 @@
 		<dependency>
 			<groupId>net.sourceforge.streamsupport</groupId>
 			<artifactId>android-retrostreams</artifactId>
-			<version>1.6.0</version>
+			<version>1.6.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<properties>
