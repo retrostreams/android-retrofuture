@@ -6,10 +6,10 @@ android-retrofuture is a backport of the Java 8 CompletableFuture API upgraded t
 
 There is nothing specific to Android or the desugar toolchain in this code (it could even be compiled to Java 6 bytecode) but
 it has a dependency on [android-retrostreams](https://github.com/retrostreams/android-retrostreams) which is why this exists as a separate component (the corresponding
-[streamsupport-cfuture](https://sourceforge.net/p/streamsupport/code/ci/default/tree/src/cfuture/) component can't be used with android-retrostreams
+[streamsupport-cfuture](https://github.com/stefan-zobel/streamsupport/tree/master/src/cfuture) component can't be used with android-retrostreams
 and [android-retrostreams](https://github.com/retrostreams/android-retrostreams) itself can *only* be used with desugar or Java 8 / 9).
 
-Other than having a different package name this code has no further changes compared with [streamsupport-cfuture](https://sourceforge.net/p/streamsupport/code/ci/default/tree/src/cfuture/)
+Other than having a different package name this code has no further changes compared with [streamsupport-cfuture](https://github.com/stefan-zobel/streamsupport/tree/master/src/cfuture)
 
 Online Javadoc is available at [docs](https://retrostreams.github.io/android-retrofuture/apidocs/index.html)
 
