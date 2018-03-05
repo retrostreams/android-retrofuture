@@ -1,4 +1,5 @@
 [![Maven Central](https://img.shields.io/maven-central/v/net.sourceforge.streamsupport/android-retrofuture.svg)](http://mvnrepository.com/artifact/net.sourceforge.streamsupport/android-retrofuture)
+[![javadoc.io](https://javadocio-badges.herokuapp.com/net.sourceforge.streamsupport/android-retrofuture/badge.svg)](http://www.javadoc.io/doc/net.sourceforge.streamsupport/android-retrofuture/)
 
 # android-retrofuture
 
