@@ -1,5 +1,6 @@
 [![Maven Central](https://img.shields.io/maven-central/v/net.sourceforge.streamsupport/android-retrofuture.svg)](http://mvnrepository.com/artifact/net.sourceforge.streamsupport/android-retrofuture)
 [![javadoc.io](https://javadocio-badges.herokuapp.com/net.sourceforge.streamsupport/android-retrofuture/badge.svg)](http://www.javadoc.io/doc/net.sourceforge.streamsupport/android-retrofuture/)
+[![Download](https://api.bintray.com/packages/stefan-zobel/android-retrofuture/android-retrofuture/images/download.svg) ](https://bintray.com/stefan-zobel/android-retrofuture/android-retrofuture/_latestVersion)
 
 # android-retrofuture
 
