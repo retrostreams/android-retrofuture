@@ -24,8 +24,8 @@
 	</developers>
 	<scm>
 		<url>https://github.com/retrostreams/android-retrofuture</url>
-		<connection>scm:git:git@github.com:retrostreams/android-retrofuture.git</connection>
-		<developerConnection>scm:git:git@github.com:retrostreams/android-retrofuture.git</developerConnection>
+		<connection>scm:git:https://github.com/retrostreams/android-retrofuture.git</connection>
+		<developerConnection>scm:git:https://github.com/retrostreams/android-retrofuture.git</developerConnection>
 	</scm>
 
 	<dependencies>
