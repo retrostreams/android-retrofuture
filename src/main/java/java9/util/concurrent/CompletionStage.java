@@ -843,7 +843,7 @@ public interface CompletionStage<T> {
         (Function<Throwable, ? extends T> fn) {
         return toCompletableFuture().exceptionallyAsync(fn);
     }
-    
+
     /**
      * Returns a new CompletionStage that, when this stage completes
      * exceptionally, is executed with this stage's exception as the
@@ -865,7 +865,7 @@ public interface CompletionStage<T> {
         (Function<Throwable, ? extends T> fn, Executor executor) {
         return toCompletableFuture().exceptionallyAsync(fn, executor);
     }        
-    
+
     /**
      * Returns a new CompletionStage that, when this stage completes
      * exceptionally, is composed using the results of the supplied
