@@ -121,7 +121,7 @@ import java9.util.function.Function;
  * @since 1.8
  */
 public interface CompletionStage<T> {
-// CVS rev. 1.41
+// CVS rev. 1.44
     /**
      * Returns a new CompletionStage that, when this stage completes
      * normally, is executed with this stage's result as the argument
@@ -831,7 +831,9 @@ public interface CompletionStage<T> {
      * normally with the same value.
      *
      * <p><b>Implementation Requirements:</b><br> The default
-     * implementation invokes the {@link #toCompletableFuture} version.
+     * implementation invokes {@link #handle}, relaying to
+     * {@link #handleAsync} on exception, then {@link #thenCompose}
+     * for result.
      *
      * @param fn the function to use to compute the value of the
      * returned CompletionStage if this CompletionStage completed
@@ -841,18 +843,23 @@ public interface CompletionStage<T> {
      */
     public default CompletionStage<T> exceptionallyAsync
         (Function<Throwable, ? extends T> fn) {
-        return toCompletableFuture().exceptionallyAsync(fn);
+        return handle((r, ex) -> (ex == null)
+                      ? this
+                      : this.<T>handleAsync((r1, ex1) -> fn.apply(ex1)))
+            .thenCompose(Function.identity());
     }
 
     /**
      * Returns a new CompletionStage that, when this stage completes
      * exceptionally, is executed with this stage's exception as the
-     * argument to the supplied function, using the supplied
-     * Executor.  Otherwise, if this stage completes normally, then
-     * the returned stage also completes normally with the same value.
+     * argument to the supplied function, using the supplied Executor.
+     * Otherwise, if this stage completes normally, then the returned
+     * stage also completes normally with the same value.
      *
      * <p><b>Implementation Requirements:</b><br> The default
-     * implementation invokes the {@link #toCompletableFuture} version.
+     * implementation invokes {@link #handle}, relaying to
+     * {@link #handleAsync} on exception, then {@link #thenCompose}
+     * for result.
      *
      * @param fn the function to use to compute the value of the
      * returned CompletionStage if this CompletionStage completed
@@ -863,8 +870,11 @@ public interface CompletionStage<T> {
      */
     public default CompletionStage<T> exceptionallyAsync
         (Function<Throwable, ? extends T> fn, Executor executor) {
-        return toCompletableFuture().exceptionallyAsync(fn, executor);
-    }        
+        return handle((r, ex) -> (ex == null)
+                      ? this
+                      : this.<T>handleAsync((r1, ex1) -> fn.apply(ex1), executor))
+            .thenCompose(Function.identity());
+    }
 
     /**
      * Returns a new CompletionStage that, when this stage completes
@@ -872,7 +882,8 @@ public interface CompletionStage<T> {
      * function applied to this stage's exception.
      *
      * <p><b>Implementation Requirements:</b><br> The default
-     * implementation invokes the {@link #toCompletableFuture} version.
+     * implementation invokes {@link #handle}, invoking the given
+     * function on exception, then {@link #thenCompose} for result.
      *
      * @param fn the function to use to compute the returned
      * CompletionStage if this CompletionStage completed exceptionally
@@ -881,17 +892,22 @@ public interface CompletionStage<T> {
      */
     public default CompletionStage<T> exceptionallyCompose
         (Function<Throwable, ? extends CompletionStage<T>> fn) {
-        return toCompletableFuture().exceptionallyCompose(fn);
+        return handle((r, ex) -> (ex == null)
+                      ? this
+                      : fn.apply(ex))
+            .thenCompose(Function.identity());
     }
 
     /**
      * Returns a new CompletionStage that, when this stage completes
      * exceptionally, is composed using the results of the supplied
-     * function applied to this stage's exception, using this
-     * stage's default asynchronous execution facility.
+     * function applied to this stage's exception, using this stage's
+     * default asynchronous execution facility.
      *
      * <p><b>Implementation Requirements:</b><br> The default
-     * implementation invokes the {@link #toCompletableFuture} version.
+     * implementation invokes {@link #handle}, relaying to
+     * {@link #handleAsync} on exception, then {@link #thenCompose}
+     * for result.
      *
      * @param fn the function to use to compute the returned
      * CompletionStage if this CompletionStage completed exceptionally
@@ -900,7 +916,11 @@ public interface CompletionStage<T> {
      */
     public default CompletionStage<T> exceptionallyComposeAsync
         (Function<Throwable, ? extends CompletionStage<T>> fn) {
-        return toCompletableFuture().exceptionallyComposeAsync(fn);
+        return handle((r, ex) -> (ex == null)
+                      ? this
+                      : this.handleAsync((r1, ex1) -> fn.apply(ex1))
+                        .thenCompose(Function.identity()))
+            .thenCompose(Function.identity());
     }
 
     /**
@@ -910,7 +930,9 @@ public interface CompletionStage<T> {
      * supplied Executor.
      *
      * <p><b>Implementation Requirements:</b><br> The default
-     * implementation invokes the {@link #toCompletableFuture} version.
+     * implementation invokes {@link #handle}, relaying to
+     * {@link #handleAsync} on exception, then {@link #thenCompose}
+     * for result.
      *
      * @param fn the function to use to compute the returned
      * CompletionStage if this CompletionStage completed exceptionally
@@ -921,7 +943,11 @@ public interface CompletionStage<T> {
     public default CompletionStage<T> exceptionallyComposeAsync
         (Function<Throwable, ? extends CompletionStage<T>> fn,
          Executor executor) {
-        return toCompletableFuture().exceptionallyComposeAsync(fn, executor);
+        return handle((r, ex) -> (ex == null)
+                      ? this
+                      : this.handleAsync((r1, ex1) -> fn.apply(ex1), executor)
+                        .thenCompose(Function.identity()))
+            .thenCompose(Function.identity());
     }
 
     /**
