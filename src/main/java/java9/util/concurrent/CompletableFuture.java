@@ -1046,7 +1046,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 
     private CompletableFuture<T> uniComposeExceptionallyStage(
         Executor e, Function<Throwable, ? extends CompletionStage<T>> f) {
-    	Objects.requireNonNull(f);
+        Objects.requireNonNull(f);
         CompletableFuture<T> d = newIncompleteFuture();
         Object r, s; Throwable x;
         if ((r = result) == null)
@@ -1153,7 +1153,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 
     private <V> CompletableFuture<V> uniComposeStage(
         Executor e, Function<? super T, ? extends CompletionStage<V>> f) {
-    	Objects.requireNonNull(f);
+        Objects.requireNonNull(f);
         CompletableFuture<V> d = newIncompleteFuture();
         Object r, s; Throwable x;
         if ((r = result) == null)
