@@ -15,6 +15,8 @@ and [android-retrostreams](https://github.com/retrostreams/android-retrostreams)
 
 Other than having a different package name this code has no further changes compared with [streamsupport-cfuture](https://github.com/stefan-zobel/streamsupport/tree/master/src/cfuture)
 
+The new Java 12 exception handling methods for CompletableFuture [JDK-8211010](https://bugs.openjdk.java.net/browse/JDK-8211010) have been integrated in release 1.7.0
+
 Online Javadoc is available at [docs](https://retrostreams.github.io/android-retrofuture/apidocs/index.html)
 
 Please give feedback [here](https://github.com/retrostreams/android-retrofuture/issues) if you experience any problems.
