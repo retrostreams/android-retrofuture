@@ -123,7 +123,7 @@ import java9.util.function.Supplier;
  * @since 1.8
  */
 public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
-// CVS rev. 1.219
+// CVS rev. 1.220
     /*
      * Overview:
      *
@@ -611,8 +611,8 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
         final CompletableFuture<V> tryFire(int mode) {
             CompletableFuture<V> d; CompletableFuture<T> a;
             Object r; Throwable x; Function<? super T,? extends V> f;
-            if ((d = dep) == null || (f = fn) == null
-                || (a = src) == null || (r = a.result) == null)
+            if ((a = src) == null || (r = a.result) == null
+                || (d = dep) == null || (f = fn) == null)
                 return null;
             tryComplete: if (d.result == null) {
                 if (r instanceof AltResult) {
@@ -633,7 +633,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
                     d.completeThrowable(ex);
                 }
             }
-            dep = null; src = null; fn = null;
+            src = null; dep = null; fn = null;
             return d.postFire(a, mode);
         }
     }
@@ -683,8 +683,8 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
         final CompletableFuture<Void> tryFire(int mode) {
             CompletableFuture<Void> d; CompletableFuture<T> a;
             Object r; Throwable x; Consumer<? super T> f;
-            if ((d = dep) == null || (f = fn) == null
-                || (a = src) == null || (r = a.result) == null)
+            if ((a = src) == null || (r = a.result) == null
+                || (d = dep) == null || (f = fn) == null)
                 return null;
             tryComplete: if (d.result == null) {
                 if (r instanceof AltResult) {
@@ -706,7 +706,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
                     d.completeThrowable(ex);
                 }
             }
-            dep = null; src = null; fn = null;
+            src = null; dep = null; fn = null;
             return d.postFire(a, mode);
         }
     }
@@ -757,8 +757,8 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
         final CompletableFuture<Void> tryFire(int mode) {
             CompletableFuture<Void> d; CompletableFuture<T> a;
             Object r; Throwable x; Runnable f;
-            if ((d = dep) == null || (f = fn) == null
-                || (a = src) == null || (r = a.result) == null)
+            if ((a = src) == null || (r = a.result) == null
+                || (d = dep) == null || (f = fn) == null)
                 return null;
             if (d.result == null) {
                 if (r instanceof AltResult && (x = ((AltResult)r).ex) != null)
@@ -775,7 +775,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
                         d.completeThrowable(ex);
                     }
             }
-            dep = null; src = null; fn = null;
+            src = null; dep = null; fn = null;
             return d.postFire(a, mode);
         }
     }
@@ -820,11 +820,11 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
         final CompletableFuture<T> tryFire(int mode) {
             CompletableFuture<T> d; CompletableFuture<T> a;
             Object r; BiConsumer<? super T, ? super Throwable> f;
-            if ((d = dep) == null || (f = fn) == null
-                || (a = src) == null || (r = a.result) == null
+            if ((a = src) == null || (r = a.result) == null
+                || (d = dep) == null || (f = fn) == null
                 || !d.uniWhenComplete(r, f, mode > 0 ? null : this))
                 return null;
-            dep = null; src = null; fn = null;
+            src = null; dep = null; fn = null;
             return d.postFire(a, mode);
         }
     }
@@ -892,11 +892,11 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
         final CompletableFuture<V> tryFire(int mode) {
             CompletableFuture<V> d; CompletableFuture<T> a;
             Object r; BiFunction<? super T, Throwable, ? extends V> f;
-            if ((d = dep) == null || (f = fn) == null
-                || (a = src) == null || (r = a.result) == null
+            if ((a = src) == null || (r = a.result) == null
+                || (d = dep) == null || (f = fn) == null
                 || !d.uniHandle(r, f, mode > 0 ? null : this))
                 return null;
-            dep = null; src = null; fn = null;
+            src = null; dep = null; fn = null;
             return d.postFire(a, mode);
         }
     }
@@ -956,11 +956,11 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
         final CompletableFuture<T> tryFire(int mode) {
             CompletableFuture<T> d; CompletableFuture<T> a;
             Object r; Function<? super Throwable, ? extends T> f;
-            if ((d = dep) == null || (f = fn) == null
-                || (a = src) == null || (r = a.result) == null
+            if ((a = src) == null || (r = a.result) == null
+                || (d = dep) == null || (f = fn) == null
                 || !d.uniExceptionally(r, f, mode > 0 ? null : this))
                 return null;
-            dep = null; src = null; fn = null;
+            src = null; dep = null; fn = null;
             return d.postFire(a, mode);
         }
     }
@@ -1015,8 +1015,8 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
             CompletableFuture<T> d; CompletableFuture<T> a;
             Function<Throwable, ? extends CompletionStage<T>> f;            
             Object r; Throwable x;
-            if ((d = dep) == null || (f = fn) == null
-                || (a = src) == null || (r = a.result) == null)
+            if ((a = src) == null || (r = a.result) == null
+                || (d = dep) == null || (f = fn) == null)
                 return null;
             if (d.result == null) {
                 if ((r instanceof AltResult) &&
@@ -1039,7 +1039,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
                 else
                     d.internalComplete(r);
             }
-            dep = null; src = null; fn = null;
+            src = null; dep = null; fn = null;
             return d.postFire(a, mode);
         }
     }
@@ -1077,8 +1077,8 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
         }
         final CompletableFuture<U> tryFire(int mode) {
             CompletableFuture<U> d; CompletableFuture<T> a; Object r;
-            if ((d = dep) == null
-                || (a = src) == null || (r = a.result) == null)
+            if ((a = src) == null || (r = a.result) == null
+                || (d = dep) == null)
                 return null;
             if (d.result == null)
                 d.completeRelay(r);
@@ -1119,8 +1119,8 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
             CompletableFuture<V> d; CompletableFuture<T> a;
             Function<? super T, ? extends CompletionStage<V>> f;
             Object r; Throwable x;
-            if ((d = dep) == null || (f = fn) == null
-                || (a = src) == null || (r = a.result) == null)
+            if ((a = src) == null || (r = a.result) == null
+                || (d = dep) == null || (f = fn) == null)
                 return null;
             tryComplete: if (d.result == null) {
                 if (r instanceof AltResult) {
@@ -1146,7 +1146,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
                     d.completeThrowable(ex);
                 }
             }
-            dep = null; src = null; fn = null;
+            src = null; dep = null; fn = null;
             return d.postFire(a, mode);
         }
     }
@@ -1261,12 +1261,12 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
             CompletableFuture<T> a;
             CompletableFuture<U> b;
             Object r, s; BiFunction<? super T,? super U,? extends V> f;
-            if ((d = dep) == null || (f = fn) == null
-                || (a = src) == null || (r = a.result) == null
+            if (   (a = src) == null || (r = a.result) == null
                 || (b = snd) == null || (s = b.result) == null
+                || (d = dep) == null || (f = fn) == null
                 || !d.biApply(r, s, f, mode > 0 ? null : this))
                 return null;
-            dep = null; src = null; snd = null; fn = null;
+            src = null; snd = null; dep = null; fn = null;
             return d.postFire(a, b, mode);
         }
     }
@@ -1337,12 +1337,12 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
             CompletableFuture<T> a;
             CompletableFuture<U> b;
             Object r, s; BiConsumer<? super T,? super U> f;
-            if ((d = dep) == null || (f = fn) == null
-                || (a = src) == null || (r = a.result) == null
+            if (   (a = src) == null || (r = a.result) == null
                 || (b = snd) == null || (s = b.result) == null
+                || (d = dep) == null || (f = fn) == null
                 || !d.biAccept(r, s, f, mode > 0 ? null : this))
                 return null;
-            dep = null; src = null; snd = null; fn = null;
+            src = null; snd = null; dep = null; fn = null;
             return d.postFire(a, b, mode);
         }
     }
@@ -1414,12 +1414,12 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
             CompletableFuture<T> a;
             CompletableFuture<U> b;
             Object r, s; Runnable f;
-            if ((d = dep) == null || (f = fn) == null
-                || (a = src) == null || (r = a.result) == null
+            if (   (a = src) == null || (r = a.result) == null
                 || (b = snd) == null || (s = b.result) == null
+                || (d = dep) == null || (f = fn) == null
                 || !d.biRun(r, s, f, mode > 0 ? null : this))
                 return null;
-            dep = null; src = null; snd = null; fn = null;
+            src = null; snd = null; dep = null; fn = null;
             return d.postFire(a, b, mode);
         }
     }
@@ -1453,12 +1453,12 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
             throw new NullPointerException();
         CompletableFuture<Void> d = newIncompleteFuture();
         if ((r = result) == null || (s = b.result) == null)
-            bipush(b, new BiRun(e, d, this, b, f));
+            bipush(b, new BiRun<>(e, d, this, b, f));
         else if (e == null)
             d.biRun(r, s, f, null);
         else
             try {
-                e.execute(new BiRun(null, d, this, b, f));
+                e.execute(new BiRun<>(null, d, this, b, f));
             } catch (Throwable ex) {
                 d.result = encodeThrowable(ex);
             }
@@ -1476,9 +1476,9 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
             CompletableFuture<T> a;
             CompletableFuture<U> b;
             Object r, s, z; Throwable x;
-            if ((d = dep) == null
-                || (a = src) == null || (r = a.result) == null
-                || (b = snd) == null || (s = b.result) == null)
+            if (   (a = src) == null || (r = a.result) == null
+                || (b = snd) == null || (s = b.result) == null
+                || (d = dep) == null)
                 return null;
             if (d.result == null) {
                 if ((r instanceof AltResult
@@ -1509,7 +1509,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
                       andTree(cfs, mid+1, hi))) == null)
                 throw new NullPointerException();
             if ((r = a.result) == null || (s = b.result) == null)
-                a.bipush(b, new BiRelay(d, a, b));
+                a.bipush(b, new BiRelay<>(d, a, b));
             else if ((r instanceof AltResult
                       && (x = ((AltResult)(z = r)).ex) != null) ||
                      (s instanceof AltResult
@@ -1551,13 +1551,11 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
             super(executor, dep, src, snd); this.fn = fn;
         }
         final CompletableFuture<V> tryFire(int mode) {
-            CompletableFuture<V> d;
-            CompletableFuture<T> a;
-            CompletableFuture<U> b;
+            CompletableFuture<V> d; CompletableFuture<? extends T> a, b;
             Object r; Throwable x; Function<? super T,? extends V> f;
-            if ((d = dep) == null || (f = fn) == null
-                || (a = src) == null || (b = snd) == null
-                || ((r = a.result) == null && (r = b.result) == null))
+            if ((a = src) == null || (b = snd) == null
+                || ((r = a.result) == null && (r = b.result) == null)
+                || (d = dep) == null || (f = fn) == null)
                 return null;
             tryComplete: if (d.result == null) {
                 try {
@@ -1576,7 +1574,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
                     d.completeThrowable(ex);
                 }
             }
-            dep = null; src = null; snd = null; fn = null;
+            src = null; snd = null; dep = null; fn = null;
             return d.postFire(a, b, mode);
         }
     }
@@ -1606,13 +1604,11 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
             super(executor, dep, src, snd); this.fn = fn;
         }
         final CompletableFuture<Void> tryFire(int mode) {
-            CompletableFuture<Void> d;
-            CompletableFuture<T> a;
-            CompletableFuture<U> b;
+            CompletableFuture<Void> d; CompletableFuture<? extends T> a, b;
             Object r; Throwable x; Consumer<? super T> f;
-            if ((d = dep) == null || (f = fn) == null
-                || (a = src) == null || (b = snd) == null
-                || ((r = a.result) == null && (r = b.result) == null))
+            if ((a = src) == null || (b = snd) == null
+                || ((r = a.result) == null && (r = b.result) == null)
+                || (d = dep) == null || (f = fn) == null)
                 return null;
             tryComplete: if (d.result == null) {
                 try {
@@ -1632,7 +1628,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
                     d.completeThrowable(ex);
                 }
             }
-            dep = null; src = null; snd = null; fn = null;
+            src = null; snd = null; dep = null; fn = null;
             return d.postFire(a, b, mode);
         }
     }
@@ -1662,9 +1658,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
             super(executor, dep, src, snd); this.fn = fn;
         }
         final CompletableFuture<Void> tryFire(int mode) {
-            CompletableFuture<Void> d;
-            CompletableFuture<T> a;
-            CompletableFuture<U> b;
+            CompletableFuture<Void> d; CompletableFuture<?> a, b;
             Object r; Throwable x; Runnable f;
             if ((d = dep) == null || (f = fn) == null
                 || (a = src) == null || (b = snd) == null
@@ -1685,7 +1679,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
                     d.completeThrowable(ex);
                 }
             }
-            dep = null; src = null; snd = null; fn = null;
+            src = null; snd = null; dep = null; fn = null;
             return d.postFire(a, b, mode);
         }
     }
@@ -1702,7 +1696,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
             return z.uniRunNow(r, e, f);
 
         CompletableFuture<Void> d = newIncompleteFuture();
-        orpush(b, new OrRun(e, d, this, b, f));
+        orpush(b, new OrRun<>(e, d, this, b, f));
         return d;
     }
 
@@ -1720,11 +1714,10 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
             CompletableFuture<Object> d; CompletableFuture<?> a;
             CompletableFuture<?>[] as;
             Object r;
-            if ((d = dep) == null
-                || (a = src) == null || (r = a.result) == null
-                || (as = srcs) == null)
+            if ((a = src) == null || (r = a.result) == null
+                || (d = dep) == null || (as = srcs) == null)
                 return null;
-            dep = null; src = null; srcs = null;
+            src = null; dep = null; srcs = null;
             if (d.completeRelay(r)) {
                 for (CompletableFuture<?> b : as)
                     if (b != a)
@@ -2077,6 +2070,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
      * while waiting
      * @throws TimeoutException if the wait timed out
      */
+    @SuppressWarnings("unchecked")
     public T get(long timeout, TimeUnit unit)
         throws InterruptedException, ExecutionException, TimeoutException {
         long nanos = unit.toNanos(timeout);
@@ -2353,26 +2347,102 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
         return uniExceptionallyStage(null, fn);
     }
 
+    /**
+     * Returns a new CompletionStage that, when this stage completes
+     * exceptionally, is executed with this stage's exception as the
+     * argument to the supplied function, using this stage's default
+     * asynchronous execution facility.  Otherwise, if this stage
+     * completes normally, then the returned stage also completes
+     * normally with the same value.
+     *
+     * <p><b>Implementation Requirements:</b><br> The default
+     * implementation invokes the {@link #toCompletableFuture} version.
+     *
+     * @param fn the function to use to compute the value of the
+     * returned CompletionStage if this CompletionStage completed
+     * exceptionally
+     * @return the new CompletionStage
+     * @since 12
+     */
     public CompletableFuture<T> exceptionallyAsync(
         Function<Throwable, ? extends T> fn) {
         return uniExceptionallyStage(defaultExecutor(), fn);
     }
 
+    /**
+     * Returns a new CompletionStage that, when this stage completes
+     * exceptionally, is executed with this stage's exception as the
+     * argument to the supplied function, using the supplied
+     * Executor.  Otherwise, if this stage completes normally, then
+     * the returned stage also completes normally with the same value.
+     *
+     * <p><b>Implementation Requirements:</b><br> The default
+     * implementation invokes the {@link #toCompletableFuture} version.
+     *
+     * @param fn the function to use to compute the value of the
+     * returned CompletionStage if this CompletionStage completed
+     * exceptionally
+     * @param executor the executor to use for asynchronous execution
+     * @return the new CompletionStage
+     * @since 12
+     */
     public CompletableFuture<T> exceptionallyAsync(
         Function<Throwable, ? extends T> fn, Executor executor) {
         return uniExceptionallyStage(screenExecutor(executor), fn);
     }
 
+    /**
+     * Returns a new CompletionStage that, when this stage completes
+     * exceptionally, is composed using the results of the supplied
+     * function applied to this stage's exception.
+     *
+     * <p><b>Implementation Requirements:</b><br> The default
+     * implementation invokes the {@link #toCompletableFuture} version.
+     *
+     * @param fn the function to use to compute the returned
+     * CompletionStage if this CompletionStage completed exceptionally
+     * @return the new CompletionStage
+     * @since 12
+     */
     public CompletableFuture<T> exceptionallyCompose(
         Function<Throwable, ? extends CompletionStage<T>> fn) {
         return uniComposeExceptionallyStage(null, fn);
     }
 
+    /**
+     * Returns a new CompletionStage that, when this stage completes
+     * exceptionally, is composed using the results of the supplied
+     * function applied to this stage's exception, using this
+     * stage's default asynchronous execution facility.
+     *
+     * <p><b>Implementation Requirements:</b><br> The default
+     * implementation invokes the {@link #toCompletableFuture} version.
+     *
+     * @param fn the function to use to compute the returned
+     * CompletionStage if this CompletionStage completed exceptionally
+     * @return the new CompletionStage
+     * @since 12
+     */
     public CompletableFuture<T> exceptionallyComposeAsync(
         Function<Throwable, ? extends CompletionStage<T>> fn) {
         return uniComposeExceptionallyStage(defaultExecutor(), fn);
     }
 
+    /**
+     * Returns a new CompletionStage that, when this stage completes
+     * exceptionally, is composed using the results of the supplied
+     * function applied to this stage's exception, using the
+     * supplied Executor.
+     *
+     * <p><b>Implementation Requirements:</b><br> The default
+     * implementation invokes the {@link #toCompletableFuture} version.
+     *
+     * @param fn the function to use to compute the returned
+     * CompletionStage if this CompletionStage completed exceptionally
+     * @param executor the executor to use for asynchronous execution
+     * @return the new CompletionStage
+     * @since 12
+     */
     public CompletableFuture<T> exceptionallyComposeAsync(
         Function<Throwable, ? extends CompletionStage<T>> fn,
         Executor executor) {
@@ -2428,7 +2498,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
         if ((n = cfs.length) <= 1)
             return (n == 0)
                 ? new CompletableFuture<Object>()
-                : (CompletableFuture<Object>) uniCopyStage(cfs[0]);
+                : uniCopyStage(cfs[0]);
         for (CompletableFuture<?> cf : cfs)
             if ((r = cf.result) != null)
                 return new CompletableFuture<Object>(encodeRelay(r));
