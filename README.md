@@ -26,7 +26,7 @@ Please give feedback [here](https://github.com/retrostreams/android-retrofuture/
 
 ```gradle
 dependencies {
-    compile 'net.sourceforge.streamsupport:android-retrofuture:1.7.2'
+    implementation 'net.sourceforge.streamsupport:android-retrofuture:1.7.2'
 }
 ```
 
