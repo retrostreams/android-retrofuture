@@ -32,5 +32,5 @@ dependencies {
 
 ## LICENSE
 
-GNU General Public License, version 2, [with the Classpath Exception](https://github.com/retrostreams/android-retrofuture/blob/master/GPL_ClasspathException)
+GNU General Public License, version 2, [with the Classpath Exception](https://github.com/retrostreams/android-retrofuture/blob/master/GPL_ClasspathException)  (and [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) for JSR-166 derived code)
 
