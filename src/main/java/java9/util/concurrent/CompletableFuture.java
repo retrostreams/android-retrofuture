@@ -442,7 +442,10 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 
     /** Fallback if ForkJoinPool.commonPool() cannot support parallelism */
     static final class ThreadPerTaskExecutor implements Executor {
-        public void execute(Runnable r) { new Thread(r).start(); }
+        public void execute(Runnable r) {
+            Objects.requireNonNull(r);
+            new Thread(r).start();
+        }
     }
 
     /**
